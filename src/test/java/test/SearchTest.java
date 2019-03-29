@@ -2,9 +2,7 @@ package test;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.NextPageWithResults;
 import page.SearchPage;
-import page.StartPage;
 
 import java.util.List;
 
@@ -29,13 +27,13 @@ public class SearchTest extends BaseTest {
                     "SearchTerm: "+searchTerm+" not found in: \n"+searchResult);
         }
 
-        NextPageWithResults nextPageWithResults = searchPage.clickSecondPage();
-        Assert.assertTrue(nextPageWithResults.isPageLoaded(), "Next search page is not loaded.");
+        searchPage.clickSecondPage();
+        Assert.assertTrue(searchPage.isPageLoaded(), "Search page is not loaded.");
 
-        Assert.assertEquals(nextPageWithResults.getSearchResultCount(), 10,
+        Assert.assertEquals(searchPage.getSearchResultCount(), 10,
                 "Search results count is wrong.");
 
-        List<String> SearchResultsList2 = nextPageWithResults.getSearchResultsList();
+        List<String> SearchResultsList2 = searchPage.getSearchResultsList2();
 
         for(String searchResult : SearchResultsList2) {
             Assert.assertTrue(searchResult.contains(searchTerm),

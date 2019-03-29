@@ -38,14 +38,23 @@ public class SearchPage extends BasePage{
     public List<String> getSearchResultsList() {
         List<String> searchResultsList = new ArrayList<String>();
         for (WebElement searchResult : searchResultElements) {
+            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", searchResult);
             String searchResultText = searchResult.getText();
             searchResultsList.add(searchResultText);
         }
         return searchResultsList;
     }
 
-    public NextPageWithResults clickSecondPage (){
+    public void clickSecondPage (){
         linkToSecondResultsPage.click();
-        return new NextPageWithResults (driver);
+    }
+
+    public List<String> getSearchResultsList2 () {
+        List<String> searchResultsList = new ArrayList<String>();
+        for (WebElement searchResult : searchResultElements) {
+            String searchResultText = searchResult.getText();
+            searchResultsList.add(searchResultText);
+        }
+        return searchResultsList;
     }
 }
